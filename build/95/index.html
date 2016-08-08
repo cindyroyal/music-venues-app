@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+    <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+    <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key=DJb6i93ywhGAm1EZq8ZDqSnKyZvsCi9D"></script>
+        
+    </head>
+    <body>
+        <div id="map" style="width:100%; height:300px;"></div>
+            <h1>In.Gredients</h1>
+        <p>Web: <a href="http://in.gredients.com/" target="_blank">http://in.gredients.com/</a></p>
+        <p>Address: 2610 Manor Rd- Austin- TX 78722</p>
+        <p>Phone: (512) 275-6357</p>
+        <p>Twitter: <a href="http://twitter.com/" target="_blank"></a></p>
+ 
+<script type="text/javascript">
+var mapLayer = MQ.mapLayer(), map;
+
+map = L.map('map', {
+  layers: mapLayer,
+  center: [ 30.285278, -97.714634 ],
+    zoom: 16
+});
+
+
+            
+            
+            map.addLayer(mapLayer);
+            var marker = L.marker([30.285278, -97.714634]).addTo(map);
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+    <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+    <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key=DJb6i93ywhGAm1EZq8ZDqSnKyZvsCi9D"></script>
+        
+    </head>
+    <body>
+        <div id="map" style="width:100%; height:300px;"></div>
+            <h1>Triple Crown</h1>
+        <p>Web: <a href="http://www.triplecrownlive.com/" target="_blank">http://www.triplecrownlive.com/</a></p>
+        <p>Address: 206 N Edward Gary St- San Marcos- TX 78666</p>
+        <p>Phone: (512) 396-2236</p>
+        <p>Twitter: <a href="http://twitter.com/@triplecrownlive" target="_blank">@triplecrownlive</a></p>
+ 
+<script type="text/javascript">
+var mapLayer = MQ.mapLayer(), map;
+
+map = L.map('map', {
+  layers: mapLayer,
+  center: [ 29.883851, -97.938654 ],
+    zoom: 16
+});
+
+
+            
+            
+            map.addLayer(mapLayer);
+            var marker = L.marker([29.883851, -97.938654]).addTo(map);
+        </script>
+
+    </body>
+</html>

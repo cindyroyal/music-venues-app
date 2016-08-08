@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+    <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js?2"></script>
+    <script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key=DJb6i93ywhGAm1EZq8ZDqSnKyZvsCi9D"></script>
+    </head>
+    <body>
+        <div id="map" style="width:100%; height:300px;"></div>
+        <h1>Austin Music Venues</h1>
+        <table border=1 cellpadding=7>
+            <tr>
+                <th>Name</th>
+                <th>Website</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Twitter</th>
+            </tr>
+            {% for obj in object_list %}
+            <tr>
+                <td><a href="{{ obj.id }}/">{{ obj.name }}</a></td>
+                <td><a href="{{ obj.website }}" target="_blank">{{ obj.website }}</a></td>
+                <td>{{ obj.address }}</td>
+                <td>{{ obj.phone }}</td>
+                <td><a href="http://www.twitter.com/{{ obj.twitter }}" target="_blank">{{ obj.twitter }}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <script type="text/javascript">
+            
+           
+
+
+var mapLayer = MQ.mapLayer(), map;
+
+map = L.map('map', {
+  layers: mapLayer,
+  center: [ 30.25, -97.75 ],
+    zoom: 8
+});
+
+map.addLayer(mapLayer);
+            var data = {
+              "type": "FeatureCollection",
+              "features": [
+                {% for obj in object_list %}
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "name": "{{ obj.name }}",
+                    "id": "{{ obj.id }}"
+                  },
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [{{ obj.x }}, {{ obj.y }}]
+                  }
+                }{% if not loop.last %},{% endif %}
+                {% endfor %}
+              ]
+            };
+            var dataLayer = L.geoJson(data, {
+                onEachFeature: function(feature, layer) {
+                    layer.bindPopup(
+                        '<a href="' + feature.properties.id + '/">' +
+                            feature.properties.name +
+                        '</a>'
+                    );
+                }
+            });
+            map.addLayer(dataLayer);
+
+
+        </script>
+    </body>
+</html>
+
+
